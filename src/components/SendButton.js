@@ -3,7 +3,7 @@ import "../App.css";
 
 const SendButton = (props) => {
 
-  return <button data-user={props.user}>Send</button>
+  return <button className="sendButton" data-user={props.user}>Send</button>
 };
 
 export default SendButton;

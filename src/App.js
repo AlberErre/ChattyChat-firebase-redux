@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ChattyLogo from './components/ChattyLogo';
 import MessengerScreen from './components/MessengerScreen';
 import TextInput from './components/TextInput';
 import SendButton from './components/SendButton';
@@ -16,8 +17,9 @@ class App extends Component {
   render() {
     return (
       <div className="AppContainer globalBackground">
+        <ChattyLogo />
         <MessengerScreen />
-        <div>
+        <div className="inputContainer">
           <TextInput />
           <SendButton
             user={this.state.userName}
