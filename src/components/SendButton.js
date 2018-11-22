@@ -1,12 +1,7 @@
 import React from "react";
 import "./App.css";
 
-const SendButton = (props) => {
-  return (
-    <div>
-      <button data-user="Alber">Send</button>
-    </div>
-  ); 
-};
+export default SendButton = (props) => {
 
-export default SendButton;
+  return <button data-user={props.user}>Send</button>
+};
