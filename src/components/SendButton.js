@@ -1,7 +1,9 @@
 import React from "react";
-import "./App.css";
+import "../App.css";
 
-export default SendButton = (props) => {
+const SendButton = (props) => {
 
   return <button data-user={props.user}>Send</button>
 };
+
+export default SendButton;

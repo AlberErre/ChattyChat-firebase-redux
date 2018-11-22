@@ -5,15 +5,23 @@ import SendButton from './components/SendButton';
 
 import './App.css';
 
-class App extends Component {  
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      userName: "someone"
+    }
+  }
   
   render() {
     return (
-      <div>
+      <div className="AppContainer globalBackground">
         <MessengerScreen />
         <div>
           <TextInput />
-          <SendButton />
+          <SendButton
+            user={this.state.userName}
+          />
         </div>
       </div>
     );
