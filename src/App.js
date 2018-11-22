@@ -3,6 +3,7 @@ import ChattyLogo from './components/ChattyLogo';
 import MessengerScreen from './components/MessengerScreen';
 import TextInput from './components/TextInput';
 import SendButton from './components/SendButton';
+import UserName from './components/UserName';
 
 import './App.css';
 
@@ -17,7 +18,10 @@ class App extends Component {
   render() {
     return (
       <div className="AppContainer globalBackground">
-        <ChattyLogo />
+        <div className="topContainer">
+          <ChattyLogo />
+          <UserName />
+        </div>
         <MessengerScreen />
         <div className="inputContainer">
           <TextInput />
