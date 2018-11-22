@@ -52,7 +52,7 @@
 }
 
 .userNameField {
-  width: 6vw;
+  width: 80px;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
   font-size: 14px;
@@ -63,9 +63,25 @@
   outline: none;
   background: #414141;
   color: #ffffff;
+  position: relative;
+  right: 12px;
 }
 
-.chattyBox {
+.userCount {
+  width: 70px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Handlee';
+  padding: 3px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background: #414141;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.chattyMessagesBox {
   widows: 300px;
   height: 500px;
   overflow-y: auto;
@@ -78,6 +94,4 @@
 .chattyIcon {
   width: 40px;
   border-radius: 30%;
-  position: relative;
-  left: 12px;
 }
