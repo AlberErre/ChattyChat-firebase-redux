@@ -37,7 +37,7 @@ class App extends Component {
       let newMessage = `<p>${data.user} (${data.timestamp}): ${data.message}</p>`;
       
       this.setState({
-        chatMessages: [...chatMessages, newMessage]
+        chatMessages: [...this.state.chatMessages, newMessage]
       });
       
     });
