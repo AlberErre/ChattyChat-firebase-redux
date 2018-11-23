@@ -30,6 +30,7 @@ class App extends Component {
       chatMessages: []
     }
     
+    this.updateUserName = this.updateUserName.bind(this);
     this.sendMessageToChat = this.sendMessageToChat.bind(this);
   }
   
@@ -46,6 +47,18 @@ class App extends Component {
     });
   }
   
+  updateUserName(event) {
+    event.preventDefault();
+
+    let newUserName = event.target.elements.userNameToUpdate.value;
+
+    if (newUserName) {
+      this.setState({
+        userName: newUserName
+      });
+    }
+  }
+  
   sendMessageToChat(event) {
     event.preventDefault();
 
@@ -57,7 +70,6 @@ class App extends Component {
         message: messageText,
         timestamp: Date.now()
       };
-      
       db.ref(chatChannel).push(messageInfo);
     }
   }
@@ -82,9 +94,7 @@ class App extends Component {
         <div className="inputContainer">
           <form onSubmit={this.sendMessageToChat}>
             <TextInput />
-            <SendButton
-              user={this.state.userName}
-            />          
+            <SendButton />          
           </form>
         </div>
         
