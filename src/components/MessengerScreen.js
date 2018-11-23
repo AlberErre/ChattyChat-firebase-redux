@@ -6,9 +6,9 @@ const MessengerScreen = (props) => {
   return (
     <div className="chattyMessagesBox">
       {
-        props.chatMessages.map( message => {
+        props.chatMessages.map( (message, index) => {
           return (
-            <div>
+            <div key={index}>
               <div className="singleMessage">
                 {message}
               </div>
