@@ -6,7 +6,11 @@ import TextInput from './components/TextInput';
 import SendButton from './components/SendButton';
 import UserName from './components/UserName';
 import MessageCounter from "./components/MessageCounter";
-import './App.css';
+import { connect } from "react-redux";
+import {
+  updateUserName, updateMessageCount, updateMessageList
+} from "./actions/chatActions";
+import "./App.css";
 
 const firebaseConfig = {
   apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -24,11 +28,6 @@ const db = firebase.database();
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      userName: "someone",
-      messageCount: 0,
-      chatMessages: []
-    }
     
     this.updateUserName = this.updateUserName.bind(this);
     this.sendMessageToChat = this.sendMessageToChat.bind(this);
@@ -39,12 +38,11 @@ class App extends Component {
     db.ref(chatChannel).on("child_added", snapshot => {
       let data = snapshot.val();
       let newMessage = `${data.user}: ${data.message}`;
-      let numberOfMessages = this.state.chatMessages.length + 1; 
-
-      this.setState({
-        chatMessages: [...this.state.chatMessages, newMessage],
-        messageCount: numberOfMessages
-      });
+      
+      //Llamar a funciones de actions!
+      this.props.updateMessageList(newMessage);
+      this.props.updateMessageCount();
+      
     });
   }
   
@@ -54,9 +52,8 @@ class App extends Component {
     let newUserName = event.target.value;
 
     if (newUserName) {
-      this.setState({
-        userName: newUserName
-      });
+      //Llamar a funciones de actions!
+      this.props.updateUserName(newUserName);      
     }
   }
   
@@ -67,7 +64,7 @@ class App extends Component {
 
     if (messageText) {
       let messageInfo = {
-        user: this.state.userName,
+        user: this.props.userName,
         message: messageText,
         timestamp: Date.now()
       };
@@ -89,11 +86,11 @@ class App extends Component {
         </div>
         
         <MessengerScreen
-          chatMessages={this.state.chatMessages}
+          chatMessages={this.props.messageList}
         />
         
         <MessageCounter
-          messageCount={this.state.messageCount}
+          messageCount={this.props.messageCount}
         />
         
         <div className="inputContainer">
@@ -108,4 +105,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapSateToProps = state => ({
+  userName: state.userName,
+  messageCount: state.messageCount,
+  messageList: state.messageList
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateUserName: () => dispatch(updateUserName),
+  updateMessageCount: () => dispatch(updateMessageCount),
+  updateMessageList: () => dispatch(updateMessageList)
+});
+
+export default connect(mapSateToProps, mapDispatchToProps)(App);
