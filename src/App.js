@@ -5,7 +5,7 @@ import MessengerScreen from './components/MessengerScreen';
 import TextInput from './components/TextInput';
 import SendButton from './components/SendButton';
 import UserName from './components/UserName';
-import UserCounter from "./components/UserCounter";
+import MessageCounter from "./components/MessageCounter";
 import './App.css';
 
 const firebaseConfig = {
@@ -26,7 +26,7 @@ class App extends Component {
     super(props)
     this.state = {
       userName: "someone",
-      usercount: 0,
+      messageCount: 0,
       chatMessages: []
     }
     
@@ -39,9 +39,11 @@ class App extends Component {
     db.ref(chatChannel).on("child_added", snapshot => {
       let data = snapshot.val();
       let newMessage = `${data.user}: ${data.message}`;
+      let numberOfMessages = this.state.chatMessages.length + 1; 
 
       this.setState({
-          chatMessages: [...this.state.chatMessages, newMessage]
+        chatMessages: [...this.state.chatMessages, newMessage],
+        messageCount: numberOfMessages
       });
     });
   }
@@ -90,8 +92,8 @@ class App extends Component {
           chatMessages={this.state.chatMessages}
         />
         
-        <UserCounter
-          usercount={this.state.usercount}
+        <MessageCounter
+          messageCount={this.state.messageCount}
         />
         
         <div className="inputContainer">
