@@ -2,8 +2,14 @@ import React from "react";
 import "../App.css";
 
 const TextInput = () => {
-    
-  return  <input type="text" name="" className="inputField" placeholder="Chatty here..." id="in-message" /> 
+  return (
+    <input
+        type="text"
+        name="messageToSend"
+        className="inputField"
+        placeholder="Chatty here..."
+    />
+  );
 };
 
 export default TextInput;

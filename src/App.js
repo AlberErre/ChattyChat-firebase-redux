@@ -8,7 +8,7 @@ import UserName from './components/UserName';
 import UserCounter from "./components/UserCounter";
 import './App.css';
 
-const config = {
+const firebaseConfig = {
   apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   authDomain: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   databaseURL: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -17,7 +17,9 @@ const config = {
   messagingSenderId: "XXXXXXXXXXXXXXXXXXXXXXXXX"
 };
 
-firebase.initializeApp(config);
+const chatChannel = "ChattyChat_channel_01";
+
+firebase.initializeApp(firebaseConfig);
 
 class App extends Component {
   constructor(props) {
@@ -27,26 +29,42 @@ class App extends Component {
       usercount: 0,
       chatMessages: []
     }
+    
+    this.sendMessageToChat = this.sendMessageToChat.bind(this);
   }
   
   componentWillMount() {
     const db = firebase.database();
 
-    db.ref('CHATTYCHAT_CHANNEL').on('child_added', (dataObject) => {
+    db.ref(chatChannel).on("child_added", dataObject => {
       let data = dataObject.val();
       let newMessage = `<p>${data.user} (${data.timestamp}): ${data.message}</p>`;
-      
-      this.setState({
-        chatMessages: [...this.state.chatMessages, newMessage]
-      });
-      
-    });
 
-  };
+      this.setState({
+          chatMessages: [...this.state.chatMessages, newMessage]
+      });
+    });
+  }
+  
+  sendMessageToChat(event) {
+    event.preventDefault();
+
+    let messageText = event.target.elements.messageToSend.value;
+
+    if (messageText) {
+      let messageInfo = {
+        user: this.state.userName,
+        message: messageText,
+        timestamp: Date.now()
+      };
+      
+      db.ref(chatChannel).push(messageInfo);
+    }
+  }
   
   render() {
     return (
-      <div className="AppContainer globalBackground">
+      <div className="appContainer globalBackground">
       
         <div className="topContainer">
           <ChattyLogo />
@@ -62,10 +80,12 @@ class App extends Component {
         />
         
         <div className="inputContainer">
-          <TextInput />
-          <SendButton
-            user={this.state.userName}
-          />
+          <form onSubmit={this.sendMessageToChat}>
+            <TextInput />
+            <SendButton
+              user={this.state.userName}
+            />          
+          </form>
         </div>
         
       </div>
