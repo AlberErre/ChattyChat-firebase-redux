@@ -18,6 +18,7 @@ const firebaseConfig = {
 };
 
 const chatChannel = "ChattyChat_channel_01";
+const db = firebase.database();
 
 firebase.initializeApp(firebaseConfig);
 
@@ -35,8 +36,7 @@ class App extends Component {
   }
   
   componentWillMount() {
-    const db = firebase.database();
-
+    
     db.ref(chatChannel).on("child_added", snapshot => {
       let data = snapshot.val();
       let newMessage = `<p>${data.user} (${data.timestamp}): ${data.message}</p>`;
