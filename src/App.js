@@ -71,6 +71,8 @@ class App extends Component {
         timestamp: Date.now()
       };
       db.ref(chatChannel).push(messageInfo);
+      // clean input area on click
+      event.target.elements.messageToSend.value = '';
     }
   }
   
