@@ -5,7 +5,7 @@ const MessageCounter = (props) => {
     
   return (
     <div id="div-counter" className="messageCount">
-      Nº messages: {props.messageCount}
+      nº messages: {props.messageCount}
     </div> 
   );
 };

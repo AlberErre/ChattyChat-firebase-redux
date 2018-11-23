@@ -67,10 +67,10 @@
   right: 12px;
 }
 
-.userCount {
-  width: 70px;
+.messageCount {
+  width: 120px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 15px;
   font-family: 'Handlee';
   padding: 3px;
   height: 20px;

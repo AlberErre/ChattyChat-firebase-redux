@@ -4,10 +4,10 @@ import "../App.css";
 const TextInput = () => {
   return (
     <input
-        type="text"
-        name="messageToSend"
-        className="inputField"
-        placeholder="Chatty here..."
+      type="text"
+      name="messageToSend"
+      className="inputField"
+      placeholder="Chatty here..."
     />
   );
 };
