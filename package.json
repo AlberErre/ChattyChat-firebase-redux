@@ -1,18 +1,28 @@
 {
   "name": "chattychat-albererre",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "node_modules/.bin/parcel serve public/index.html",
+    "build": "rm -rf build/* && node_modules/.bin/parcel build public/index.html --no-source-maps -d build/output --public-url /experiments/chattychat/"
+  },
   "dependencies": {
     "firebase": "^5.5.9",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.10.1",
+    "postcss-clean": "^1.1.0",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-font-magician": "^2.2.1",
+    "postcss-mixins": "^6.2.0",
+    "postcss-preset-env": "^6.0.7"
   },
   "eslintConfig": {
     "extends": "react-app"
