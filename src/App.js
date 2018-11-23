@@ -50,8 +50,8 @@ class App extends Component {
   
   updateUserName(event) {
     event.preventDefault();
-
-    let newUserName = event.target.elements.userNameToUpdate.value;
+        
+    let newUserName = event.target.value;
 
     if (newUserName) {
       this.setState({
