@@ -82,7 +82,9 @@ class App extends Component {
       
         <div className="topContainer">
           <ChattyLogo />
-          <UserName />
+          <UserName
+            updateUserName={this.updateUserName}   
+          />
         </div>
         
         <MessengerScreen
