@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from "redux";
+import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from "react-redux";
-import chattyReducer from "./src/reducers/chattyReducer";
+import thunk from 'redux-thunk';
+import chattyReducer from "./reducers/chattyReducer";
 
-const store = createStore(chattyReducer);
+// this way redux allow us to pass async actions instead of plain objects!
+const store = createStore(chattyReducer, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
