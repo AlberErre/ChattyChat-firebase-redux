@@ -29,7 +29,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     
-    this.updateUserName = this.updateUserName.bind(this);
+    this.updateName = this.updateName.bind(this);
     this.sendMessageToChat = this.sendMessageToChat.bind(this);
   }
   
@@ -46,7 +46,7 @@ class App extends Component {
     });
   }
   
-  updateUserName(event) {
+  updateName(event) {
     event.preventDefault();
         
     let newUserName = event.target.value;
@@ -61,13 +61,14 @@ class App extends Component {
     event.preventDefault();
 
     let messageText = event.target.elements.messageToSend.value;
-
     if (messageText) {
       let messageInfo = {
-        user: this.props.userName,
+        user: this.props,
         message: messageText,
         timestamp: Date.now()
       };
+      console.log(messageInfo);
+
       db.ref(chatChannel).push(messageInfo);
       // clean input area on click
       event.target.elements.messageToSend.value = '';
@@ -81,7 +82,7 @@ class App extends Component {
         <div className="topContainer">
           <ChattyLogo />
           <UserName
-            updateUserName={this.updateUserName}   
+            updateUserName={this.updateName}   
           />
         </div>
         
@@ -90,7 +91,7 @@ class App extends Component {
         />
         
         <MessageCounter
-          messageCount={this.props.messageCount}
+          count={this.props.messageCount}
         />
         
         <div className="inputContainer">
@@ -112,9 +113,9 @@ const mapSateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUserName: () => dispatch(updateUserName),
+  updateUserName: newUserName => dispatch(updateUserName(newUserName)),
   updateMessageCount: () => dispatch(updateMessageCount),
-  updateMessageList: () => dispatch(updateMessageList)
+  updateMessageList: newMessage => dispatch(updateMessageList(newMessage))
 });
 
 export default connect(mapSateToProps, mapDispatchToProps)(App);

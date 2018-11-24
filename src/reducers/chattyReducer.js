@@ -6,13 +6,18 @@ const initialState = {
 
 const chattyReducer = (state = initialState, action) => {
   switch(action.type) {
+
     case 'UPDATE_USERNAME': 
-      return { userName: action.payload }
+      return { userName: action.newUserName }
+
     case 'UPDATE_MESSAGE_COUNT': 
-      return { messageCount: state.messageList.length + 1 };
+      return { messageCount: [...state.messageList].length + 1 }
+
     case 'UPDATE_MESSAGE_LIST': 
-      return { messageList: [...state.messageList, action.payload] };
-    default: return state
+      return { messageList: [...state.messageList, action.newMessage] }
+
+    default:
+      return state
   }
 };
 

@@ -1,19 +1,19 @@
-export function updateUserName(newUserName) {
+export const updateUserName = (newUserName) => {
   return {
     type: "UPDATE_USERNAME",
-    payload: newUserName
+    newUserName
   };
 }
 
-export function updateMessageCount() {
+export const updateMessageCount = () => {
   return {
-    type: "UPDATE_MESSAGE_COUNT",
+    type: "UPDATE_MESSAGE_COUNT"
   };
 }
 
-export function updateMessageList(newMessage) {
+export const updateMessageList = (newMessage) => {
   return {
     type: "UPDATE_MESSAGE_LIST",
-    payload: newMessage
+    newMessage
   };
 }
