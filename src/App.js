@@ -8,7 +8,8 @@ import UserName from './components/UserName';
 import MessageCounter from "./components/MessageCounter";
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
-import * as chatActions from "./actions/chatActions";
+import { updateUserName, updateMessageCount,
+updateMessageList } from "./actions/chatActions";
 import "./App.css";
 
 const firebaseConfig = {
@@ -40,7 +41,7 @@ class App extends Component {
       
       //Llamar a funciones de actions!
       this.props.chatActions.updateMessageList(newMessage);
-      
+      this.props.chatActions.updateMessageCount();
     });
   }
   
@@ -61,7 +62,7 @@ class App extends Component {
     let messageText = event.target.elements.messageToSend.value;
     if (messageText) {
       let messageInfo = {
-        user: this.props,
+        user: this.props.userName,
         message: messageText,
         timestamp: Date.now()
       };
@@ -111,7 +112,11 @@ const mapSateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  chatActions: bindActionCreators(chatActions, dispatch)
+  chatActions: bindActionCreators({
+    updateUserName,
+    updateMessageList,
+    updateMessageCount
+  }, dispatch)
 });
 
 export default connect(mapSateToProps, mapDispatchToProps)(App);
