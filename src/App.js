@@ -6,10 +6,9 @@ import TextInput from './components/TextInput';
 import SendButton from './components/SendButton';
 import UserName from './components/UserName';
 import MessageCounter from "./components/MessageCounter";
+import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
-import {
-  updateUserName, updateMessageCount, updateMessageList
-} from "./actions/chatActions";
+import * as chatActions from "./actions/chatActions";
 import "./App.css";
 
 const firebaseConfig = {
@@ -33,15 +32,14 @@ class App extends Component {
     this.sendMessageToChat = this.sendMessageToChat.bind(this);
   }
   
-  componentWillMount() {
-    
+  componentDidMount() {
+
     db.ref(chatChannel).on("child_added", snapshot => {
       let data = snapshot.val();
       let newMessage = `${data.user}: ${data.message}`;
       
       //Llamar a funciones de actions!
-      this.props.updateMessageList(newMessage);
-      this.props.updateMessageCount();
+      this.props.chatActions.updateMessageList(newMessage);
       
     });
   }
@@ -53,7 +51,7 @@ class App extends Component {
 
     if (newUserName) {
       //Llamar a funciones de actions!
-      this.props.updateUserName(newUserName);      
+      this.props.chatActions.updateUserName(newUserName);      
     }
   }
   
@@ -112,10 +110,8 @@ const mapSateToProps = state => ({
   messageList: state.messageList
 });
 
-const actionDispacher = {
-  updateUserName,
-  updateMessageCount,
-  updateMessageList
-};
+const mapDispatchToProps = (dispatch) => ({
+  chatActions: bindActionCreators(chatActions, dispatch)
+});
 
-export default connect(mapSateToProps, actionDispacher)(App);
+export default connect(mapSateToProps, mapDispatchToProps)(App);
