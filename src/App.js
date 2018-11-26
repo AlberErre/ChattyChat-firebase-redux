@@ -112,10 +112,10 @@ const mapSateToProps = state => ({
   messageList: state.messageList
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateUserName: newUserName => dispatch(updateUserName(newUserName)),
-  updateMessageCount: () => dispatch(updateMessageCount),
-  updateMessageList: newMessage => dispatch(updateMessageList(newMessage))
-});
+const actionDispacher = {
+  updateUserName,
+  updateMessageCount,
+  updateMessageList
+};
 
-export default connect(mapSateToProps, mapDispatchToProps)(App);
+export default connect(mapSateToProps, actionDispacher)(App);

@@ -1,19 +1,26 @@
 export const updateUserName = (newUserName) => {
-  return {
-    type: "UPDATE_USERNAME",
-    newUserName
+  return dispatch => {
+    dispatch({
+      type: "UPDATE_USERNAME",
+      newUserName 
+    })
   };
 }
 
 export const updateMessageCount = () => {
-  return {
-    type: "UPDATE_MESSAGE_COUNT"
+  return dispatch => {
+    dispatch({
+      type: "UPDATE_MESSAGE_COUNT"
+    })
   };
 }
 
 export const updateMessageList = (newMessage) => {
-  return {
-    type: "UPDATE_MESSAGE_LIST",
-    newMessage
+
+  return dispatch => {
+    dispatch({
+      type: "UPDATE_MESSAGE_LIST",
+      newMessage
+    })
   };
 }
