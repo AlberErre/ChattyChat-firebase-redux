@@ -11,7 +11,7 @@ const chattyReducer = (state = initialState, action) => {
       return {...state, userName: action.newUserName }
 
     case 'UPDATE_MESSAGE_COUNT':
-      return {...state,  messageCount: [...state.messageList].length + 1 }
+      return {...state,  messageCount: [...state.messageList].length }
 
     case 'UPDATE_MESSAGE_LIST': 
       return { ...state, messageList: [...state.messageList, action.newMessage] }
