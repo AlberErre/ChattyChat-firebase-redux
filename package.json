@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "node_modules/.bin/parcel serve public/index.html",
     "test": "jest --watch",
+    "test-travis-ci": "jest",
     "build": "rm -rf build/* && node_modules/.bin/parcel build public/index.html --no-source-maps -d build/output --public-url /experiments/chattychat/"
   },
   "dependencies": {
