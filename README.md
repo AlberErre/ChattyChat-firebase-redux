@@ -1,12 +1,12 @@
-# ChattyChat App 🗣️
-chattyChat app (React & Redux) 🚀 💻 based on Firebase Realtime Database
+# [![Build Status](https://travis-ci.org/AlberErre/ChattyChat-firebase-redux.svg?branch=master)](https://travis-ci.org/AlberErre/ChattyChat-firebase-redux)   ChattyChat App 🗣️ 
+
+### chattyChat app (React & Redux) 🚀 💻 based on Firebase Realtime Database
 
 ```
 Chatty as much as you want! 
 ``` 
 
-## Live example
-### https://albererre.com/experiments/chattychat/
+### Live example: https://albererre.com/experiments/chattychat/
 
 ## Quick Start 
 ```
