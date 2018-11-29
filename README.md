@@ -14,5 +14,10 @@ npm install
 npm run dev 
 ``` 
 
+## Testing 
+```
+npm run test 
+``` 
+
 ## Screenshot
 ![Chat example](https://raw.githubusercontent.com/AlberErre/ChattyChat-firebase/master/example-chattychat.png)
