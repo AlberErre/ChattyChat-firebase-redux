@@ -47,3 +47,41 @@ describe("Reducer should work as expected", () => {
         });
     });
 });
+
+const mockState = {
+    userName: "Alber Erre",
+    messageCount: 0,
+    messageList: [{
+        user: "Alber Erre",
+        message: "Hello!",
+        timestamp: mockTimeStamp
+    },
+    {
+        user: "Alber Erre",
+        message: "This is my second message!",
+        timestamp: mockTimeStamp
+    }]
+};
+
+const mockMessageCountAction = {
+    type: "UPDATE_MESSAGE_COUNT"
+};
+
+describe("Reducer should work as expected", () => {
+    test("should return messageCount = 2, based on messageList.length (mockState)", () => {
+        expect(chattyReducer(mockState, mockMessageCountAction)).toEqual({
+            userName: "Alber Erre",
+            messageCount: 2,
+            messageList: [{
+                user: "Alber Erre",
+                message: "Hello!",
+                timestamp: mockTimeStamp
+            },
+            {
+                user: "Alber Erre",
+                message: "This is my second message!",
+                timestamp: mockTimeStamp
+            }]
+        });
+    });
+});
