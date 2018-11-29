@@ -32,3 +32,18 @@ describe("Reducer should work as expected", () => {
         });
     });
 });
+
+const mockUsernameAction = {
+    type: "UPDATE_USERNAME",
+    newUserName: "Alber Erre" 
+};
+
+describe("Reducer should work as expected", () => {
+    test("should return Alber Erre as user name", () => {
+        expect(chattyReducer(initialState, mockUsernameAction)).toEqual({
+            userName: "Alber Erre",
+            messageCount: 0,
+            messageList: []
+        });
+    });
+});
