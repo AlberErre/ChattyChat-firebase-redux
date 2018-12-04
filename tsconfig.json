@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "jsx": "react",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "parcel-plugin-typescript": {
+      // If true type-checking is disabled
+      "transpileOnly": false
+  },
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules"
+  ]
+}
